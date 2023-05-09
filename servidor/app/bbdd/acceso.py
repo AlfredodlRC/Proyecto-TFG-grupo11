@@ -1,11 +1,15 @@
+import datetime
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from schemas_API.incidencia import Incidencia
+from schemas.usuario import Usu_pk
+from schemas.departamento import Departamento
+from schemas.incidencia import Incidencia_API
+from schemas.incidencia import Incidencia_BBDD
 
-from schemas_bbdd.prioridad import Prioridad
-from schemas_bbdd.tipo_incidencia import Tipo_incidencia
-from schemas_bbdd.estado import Estado
+from schemas.prioridad import Prioridad
+from schemas.tipo_incidencia import Tipo_incidencia
+from schemas.estado import Estado
 
 class AccesoBBDD():
     def __init__(self):
@@ -25,6 +29,14 @@ class AccesoBBDD():
             resultado.append(est)
         return resultado
 
+    def obtener_departamentos(self):
+        docs = self.__db__.collection(u'departamentos').stream()
+        resultado = list()
+        for doc in docs:
+            est = Departamento(pk=doc.id, nombre=doc.get('nombre'))
+            resultado.append(est)
+        return resultado
+    
     def obtener_estados(self):
         docs = self.__db__.collection(u'estados').stream()
         resultado = list()
@@ -46,6 +58,14 @@ class AccesoBBDD():
         resultado = list()
         for doc in docs:
             est = Prioridad(pk=doc.id, nombre=doc.get('nombre'))
+            resultado.append(est)
+        return resultado
+    
+    def obtener_personas(self):
+        docs = self.__db__.collection(u'usuarios').stream()
+        resultado = list()
+        for doc in docs:
+            est = Usu_pk(pk=doc.id, nombre=doc.get('nombre'))
             resultado.append(est)
         return resultado
     
@@ -80,32 +100,172 @@ class AccesoBBDD():
     # operaciones de incidencias
     #
 
-    def listar_incidencia(self,nombre: str, id: int,tipo_usuario: str = None):
-        pass
+    def listar_incidencias(self, id: int,tipo_usuario: str = None):
+        resultado = list()
+        departamentos = self.obtener_departamentos()
+        estados = self.obtener_estados()
+        prioridades = self.obtener_prioridades()
+        tipos = self.obtener_tipo_incidencias()
+        personas = self.obtener_personas()
+            
+        docs = self.__db__.collection(u'incidencias')
+        if tipo_usuario == "creador":
+            doc_usuario = docs.where(u"fk_persona_origen",u'==',id)
+        elif tipo_usuario == "solucionador":
+            doc_usuario = docs.where(u"fk_persona_destino",u'==',id)
+        else:
+            return resultado
+        docs = doc_usuario.stream()
+        resultado = list()
+        for doc in docs:
+            for ele in departamentos:
+                if int(ele.pk) == int(doc.get('fk_departamento_destino')):
+                    departamento = ele.nombre
+            for ele in estados:
+                if int(ele.pk) == int(doc.get('fk_estado')):
+                    estado = ele.nombre
+            for ele in prioridades:
+                if int(ele.pk) == int(doc.get('fk_prioridad')):
+                    prioridad = ele.nombre
+            for ele in tipos:
+                if int(ele.pk) == int(doc.get('fk_tipo_incidencia')):
+                    tipo = ele.nombre
+            for ele in personas:
+                if int(ele.pk) == int(doc.get('fk_persona_destino')):
+                    persona_origen = ele.nombre
+                if int(ele.pk) == int(doc.get('fk_persona_origen')):
+                    persona_destino = ele.nombre
+            incidencia_api = Incidencia_API(
+                pk=doc.id, 
+                nombre=doc.get('nombre'),
+                descripcion=doc.get('descripcion'),
+                tiempo_resolucion=doc.get('tiempo_resolucion'),
+                fecha_creacion=doc.get('fecha_creacion'),
+                fecha_finalizacion=doc.get('fecha_finalizacion'),
+                departamento_destino=departamento,
+                estado=estado,
+                persona_origen=persona_origen,
+                persona_destino=persona_destino,
+                tipo_incidencia=tipo,
+                prioridad=prioridad
+                )
+            resultado.append(incidencia_api)
+            print(incidencia_api)
+        return resultado
+        
 
-    def crear_incidencia(self,incidencia: Incidencia):
-        pass
+    def crear_incidencia(self,incidencia: Incidencia_API):
+        docs = self.__db__.collection(u'incidencias')
+        departamentos = self.obtener_departamentos()
+        for departamento in departamentos:
+            if departamento.nombre == incidencia.departamento_destino:
+                fk_departamento_destino = departamento.pk
+        estados = self.obtener_estados()
+        for estado in estados:
+            print(estado.nombre,incidencia.estado)
+            if estado.nombre == incidencia.estado:
+                fk_estado = estado.pk
+        print(estados)
+        prioridades = self.obtener_prioridades()
+        print(prioridades)
+        for prioridad in prioridades:
+            print(prioridad.nombre,incidencia.prioridad)
+            if prioridad.nombre == incidencia.prioridad:
+                fk_prioridad = prioridad.pk
+        print(fk_prioridad)
+        tipos = self.obtener_tipo_incidencias()
+        for tipo in tipos:
+            if tipo.nombre == incidencia.tipo_incidencia:
+                fk_tipo_incidencia = tipo.pk
+        
+        personas = self.__db__.collection(u'usuarios').stream()
+        resultado = list()
+        for persona in personas:
+            if persona.get('nombre') == incidencia.persona_destino:
+                fk_persona_destino = persona.id
+            if persona.get('nombre') == incidencia.persona_origen:
+                fk_persona_origen = persona.id
 
-    def cerrar_incidencia(self,nombre: str, id: int):
-        pass
+        datos = {
+            "descripcion": incidencia.descripcion,
+            "fecha_creacion": datetime.datetime.now(),
+            "fecha_finalizacion": datetime.datetime.now(),
+            "nombre": incidencia.nombre,
+            "fk_prioridad": fk_prioridad,
+            "fk_estado": fk_estado,
+            "fk_departamento_destino": fk_departamento_destino,
+            "tiempo_resolucion": 0,
+            "fk_persona_destino": fk_persona_destino,
+            "fk_persona_origen": fk_persona_origen,
+            "fk_tipo_incidencia": fk_tipo_incidencia
+        }
+        print(datos)
+        id = self.indice_maximo("incidencias") + 1
 
-    def rechazar_incidencia(self,nombre: str, id: int):
-        pass
+        self.__db__.collection("incidencias").document(str(id)).set(datos)
+        return True
 
-    def anyadir_mensaje(self, texto: str, nombre: str = None, id: int = None, id_usuario: int = None):
-        pass
+    def cerrar_incidencia(self,id: int):
+        print(str(id))
+        doc = self.__db__.collection(u'incidencias').document(str(id))
+        doc.update({u'fk_estado': 2})
+        return True
+
+    def rechazar_incidencia(self, id: int):
+        print(str(id))
+        doc = self.__db__.collection(u'incidencias').document(str(id))
+        doc.update({u'fk_estado': 3})
+        return True
+
+    def anyadir_mensaje(self, texto: str, id: int = None, id_usuario: int = None):
+        datos = {
+            u'fecha_creacion': firestore.SERVER_TIMESTAMP,
+            u'fk_incidencia': id,
+            u'fk_usuario': id_usuario,
+            u'texto': texto
+        }
+        id = self.indice_maximo("mensajes") + 1
+        doc = self.__db__.collection(u'mensajes').document(str(id))
+        doc.set(datos)
+        return True
 
     def eliminar_mensaje(self, id: int):
-        pass
+        doc = self.__db__.collection(u'mensajes').document(str(id)).delete()
+        return True
 
     def anyadir_comentario_incidencia(self, texto: str, id: int = None, id_usuario: int = None):
-        pass
+        datos = {
+            u'fecha_creacion': firestore.SERVER_TIMESTAMP,
+            u'fk_incidencia': id,
+            u'fk_usuario': id_usuario,
+            u'texto': texto
+        }
+        id = self.indice_maximo("mensajes") + 1
+        doc = self.__db__.collection(u'comentarios').document(str(id))
+        doc.set(datos)
+        return True
 
-    def eliminar_comentario_incidencia(self, id: int):
-        pass
+    def eliminar_comentario(self, id: int):
+        doc = self.__db__.collection(u'comentarios').document(str(id)).delete()
+        return True
 
     def anyadir_comentario_mensaje(self, texto: str, id: int, id_usuario: int = None):
-        pass
+        datos = {
+            u'fecha_creacion': firestore.SERVER_TIMESTAMP,
+            u'fk_mensaje': id,
+            u'fk_usuario': id_usuario,
+            u'texto': texto
+        }
+        id = self.indice_maximo("mensajes") + 1
+        doc = self.__db__.collection(u'comentarios').document(str(id))
+        doc.set(datos)
+        return True
 
-    def eliminar_comentario_mensaje(self, id: int):
-        pass
+
+    def indice_maximo(self,coleccion: str):
+        id = 0
+        docs = self.__db__.collection(coleccion).stream()
+        for doc in docs:
+            if int(doc.id) > id:
+                id = int(doc.id)
+        return id

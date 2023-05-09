@@ -1,7 +1,7 @@
 # Proyecto servidor TickTask
 
 ## Ejecutar servidor
-Iniciar Servidor (desde terminal estando en el directorio del servidor):
+Iniciar Servidor (en terminal estando en el directorio del servidor):
 cd venv
 cd Scripts
 activate
@@ -20,4 +20,4 @@ uvicorn main:app --reload
 2. [Protocolo HTTP Wikipedia](https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto)
 3. [Tipos MIME](https://developer.mozilla.org/es/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
 4. [FastAPI](https://fastapi.tiangolo.com/tutorial/)
-5. [Conectar Spring boot con firebase](https://firebase.google.com/docs/firestore/quickstart?hl=es-419)
+5. [Doumentación conexión firebase](https://firebase.google.com/docs/firestore?hl=es-419)

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from schemas_API.usuario import Usu, Usu_alta
+from schemas.usuario import Usu, Usu_alta
 
 from bbdd.acceso import AccesoBBDD
 

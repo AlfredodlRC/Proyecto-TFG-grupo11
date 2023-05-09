@@ -5,6 +5,12 @@ from bbdd.acceso import AccesoBBDD
 
 router = APIRouter()
 
+@router.get("/departamentos/")
+async def leer_estados():
+    acceso = AccesoBBDD()
+    resultado = acceso.obtener_departamentos()
+    return resultado
+
 @router.get("/estados/")
 async def leer_estados():
     acceso = AccesoBBDD()

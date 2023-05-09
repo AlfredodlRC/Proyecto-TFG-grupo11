@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schemas_API.incidencia import Incidencia
+from schemas.incidencia import Incidencia_API
 
 from bbdd.acceso import AccesoBBDD
 
@@ -7,7 +7,7 @@ from bbdd.acceso import AccesoBBDD
 router = APIRouter()
 # crear incidecia 
 @router.put("/incidencia/crear/")
-async def crear_incidencia(incidencia: Incidencia):
+async def crear_incidencia(incidencia: Incidencia_API):
     acceso = AccesoBBDD()
     resultado = acceso.crear_incidencia(incidencia)
     return resultado
@@ -27,13 +27,13 @@ async def rechazar_incidencia(id: int):
 @router.get("/incidencias/creador/id/{id}")
 async def listar_incidencia_creador(id: int):
     acceso = AccesoBBDD()
-    resultado = acceso.listar_incidencia(id,"creador")
+    resultado = acceso.listar_incidencias(id,"creador")
     return resultado
 # traer incidencias por solucionador id-nombre activas-resueltas-rechazadas
 @router.get("/incidencias/solucionador/id/{id}")
 async def listar_incidencia_solucionador(id: int):
     acceso = AccesoBBDD()
-    resultado = acceso.listar_incidencia(id,"solucionador")
+    resultado = acceso.listar_incidencias(id,"solucionador")
     return resultado
 # agregar mensaje a incidencia(pk-nombre) usuario (nombre)
 @router.post("/incidencia/id/{id}/mensaje/nuevo/{texto}/usuario/id{id_usuario}")
