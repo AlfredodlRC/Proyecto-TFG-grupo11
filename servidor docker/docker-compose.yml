@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "9123:9123"
+    environment:
+      PYTHONPATH: .
+    env_file:
+      - .env
+    volumes:
+      - ./resources/:/app/resources
