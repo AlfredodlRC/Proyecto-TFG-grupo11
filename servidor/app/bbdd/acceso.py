@@ -72,7 +72,7 @@ class AccesoBBDD():
     #
     # Operaciones de usuarios
     #
-    def login(self,usuario:str, contrasenya:str):
+    def login_nombre(self,usuario:str, contrasenya:str):
         resultado = False
         docs = self.__db__.collection(u'usuarios')
         doc_usuario = docs.where(u'nombre',u'==',usuario)
@@ -81,6 +81,20 @@ class AccesoBBDD():
             print(f'{doc.id} => {doc.to_dict()}')
             print(doc.get('nombre'))
             if doc.get('nombre') == usuario:
+                if doc.get('password') == contrasenya:
+                    resultado = True
+        return resultado
+    
+    def login_email(self,email:str, contrasenya:str):
+        resultado = False
+        print(email)
+        docs = self.__db__.collection(u'usuarios')
+        doc_usuario = docs.where(u'email',u'==',email)
+        docs = doc_usuario.stream()
+        for doc in docs:
+            print(f'{doc.id} => {doc.to_dict()}')
+            print(doc.get('nombre'))
+            if doc.get('email') == email:
                 if doc.get('password') == contrasenya:
                     resultado = True
         return resultado

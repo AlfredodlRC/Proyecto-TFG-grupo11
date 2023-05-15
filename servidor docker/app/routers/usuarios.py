@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.schemas.usuario import Usu, Usu_alta
+from app.schemas.usuario import Usu, Usu_alta, Usu_email
 
 from app.bbdd.acceso import AccesoBBDD
 
@@ -8,10 +8,16 @@ from app.bbdd.acceso import AccesoBBDD
 
 router = APIRouter()
 
-@router.post("/login/")
-async def login(usu: Usu):
+@router.post("/login/nombre")
+async def login_nombre(usu: Usu):
     acceso = AccesoBBDD()
-    resultado = acceso.login(usu.nombre,usu.contrasenya)
+    resultado = acceso.login_nombre(usu.nombre,usu.contrasenya)
+    return resultado
+
+@router.post("/login/email")
+async def login_nombre(usu: Usu_email):
+    acceso = AccesoBBDD()
+    resultado = acceso.login_email(usu.email,usu.contrasenya)
     return resultado
 
 
