@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+
+    >
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="319dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="252dp"
+        app:cardBackgroundColor="@color/green1"
+        app:cardCornerRadius="34dp"
+        app:cardElevation="18sp"
+        app:cardMaxElevation="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="319dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="224dp"
+        app:cardBackgroundColor="@color/green1"
+        app:cardCornerRadius="34dp"
+        app:cardElevation="18sp"
+        app:cardMaxElevation="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="319dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="36dp"
+        app:cardBackgroundColor="@color/green1"
+        app:cardCornerRadius="34dp"
+        app:cardElevation="18sp"
+        app:cardMaxElevation="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="319dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="152dp"
+        app:cardBackgroundColor="@color/green1"
+        app:cardCornerRadius="34dp"
+        app:cardElevation="18sp"
+        app:cardMaxElevation="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="407dp"
+        android:layout_height="72dp"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
