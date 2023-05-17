@@ -19,10 +19,6 @@
             android:label="@string/title_activity_create_ticket"
             android:theme="@style/Theme.Ticket_example.Fullscreen" />
         <activity
-            android:name=".ui.login.Create_ticket"
-            android:exported="false"
-            android:label="@string/title_activity_create_ticket" />
-        <activity
             android:name=".Sign_Up"
             android:exported="false" />
         <activity

@@ -86,7 +86,7 @@ class AccesoBBDD():
         return resultado
     
     def login_email(self,email:str, contrasenya:str):
-        resultado = False
+        resultado = {"login": False, "nombre": ''}
         print(email)
         docs = self.__db__.collection(u'usuarios')
         doc_usuario = docs.where(u'email',u'==',email)
@@ -96,7 +96,7 @@ class AccesoBBDD():
             print(doc.get('nombre'))
             if doc.get('email') == email:
                 if doc.get('password') == contrasenya:
-                    resultado = True
+                    resultado = {"login": True, "nombre": doc.get('nombre')}
         return resultado
     
     #
