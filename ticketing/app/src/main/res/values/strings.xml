@@ -14,8 +14,11 @@
     <string name="logout">LogOut</string>
     <string name="signUp">Sign Up</string>
     <string name="signUpButton">Sign Up</string>
+
     <string name="InputPhone">Phone</string>
     <string name="InputConfirm">Confirm Password</string>
+
+
     <string name="title_activity_create">Create_activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
