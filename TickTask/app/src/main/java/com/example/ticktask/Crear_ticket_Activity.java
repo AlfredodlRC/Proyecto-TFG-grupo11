@@ -46,9 +46,14 @@ public class Crear_ticket_Activity extends AppCompatActivity {
         });
 
         Spn_departamento = findViewById(R.id.SPN_departamento);
-        Spn_departamento.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Spn_departamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
