@@ -37,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
         Btn_perfil.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
-                startActivity(intent);
-            }
+                // Aquí se  muestra las opciones de perfil y cerrar sesión
+                // mostrar un diálogo, abrir una actividad específica o realizar cualquier otra acción
+                    showPopupMenuProfile(Btn_perfil);
+                }
+
         });
 
         Btn_crear_ticket = findViewById(R.id.Btn_Crear_ticket);
@@ -89,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.menu_logout) {
                     // Acciones cuando se selecciona "Cerrar sesión"
                     Toast.makeText(MainActivity.this, "Cerrar sesión", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(MainActivity.this, Activity_Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpiar la pila de actividades
+                    startActivity(intent);
+                    finish(); // Finalizar la actividad actual
                     return true;
                 }
                 return false;
