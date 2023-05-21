@@ -1,38 +1,63 @@
 package com.example.ticktask.retrofit;
 
+import com.example.ticktask.retrofit.POJOS.Departamento;
+import com.example.ticktask.retrofit.POJOS.Estado;
+import com.example.ticktask.retrofit.POJOS.Prioridad;
+import com.example.ticktask.retrofit.POJOS.Tipo_incidencia;
+import com.example.ticktask.retrofit.POJOS.Usuario_login;
+import com.example.ticktask.retrofit.POJOS.Usuario_simple;
+
+import java.util.List;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MyApiService {
-    @POST("login/nombre")
-    Call<Boolean> getLogin_nombre(
+    @POST("/login/nombre")
+    Call<Usuario_login> getLogin_nombre(
             @Query("nombre") String username,
-            @Query("password") String password
+            @Query("contrasenya") String contrasenya
     );
 
-    @POST("login/email")
-    Call<Boolean> getLogin_email(
+    @POST("/login/email")
+    Call<Usuario_login> getLogin_email(
             @Query("email") String username,
-            @Query("password") String password
+            @Query("contrasenya") String contrasenya
     );
-
-    /**
-    @router.get("/departamentos/")
-    @router.get("/estados/")
-    @router.get("/prioridades/")
-    @router.get("/tipo_incidenias/")
-    @router.get("/usuarios/departamento/{id}")
-     @router.put("/incidencia/crear/")
-     @router.post("/incidencia/cerrar/id/{id}")
-     @router.post("/incidencia/rechazar/id/{id}")
-     @router.get("/incidencias/creador/id/{id}")
-     @router.get("/incidencias/solucionador/id/{id}")
-     @router.post("/incidencia/id/{id}/mensaje/nuevo/{texto}/usuario/id{id_usuario}")
-     @router.post("/mensaje/eliminar/{id}")
-     @router.post("/incidencia/id/{nombre}/comentario/nuevo/{texto}/usuario/id{id_usuario}")
-     @router.post("/comentario/eliminar/{id}")
-     @router.post("/mensaje/{id}/comentario/nuevo/{texto}/usuario/id/{d_usuario}")
-    */
+    @GET("/departamentos")
+    Call<List<Departamento>> get_departamentos();
+    @GET("/estados")
+    Call<List<Estado>> get_estados();
+    @GET("/prioridades")
+    Call<List<Prioridad>> get_Prioridades();
+    @GET("/tipo_incidenias/")
+    Call<List<Tipo_incidencia>> get_tipo_incidencias();
+    @GET("/usuarios/departamento/{id}")
+    Call<List<Usuario_simple>> get_usuarios_de_departamento(@Path("id") int id);
+    @PUT("/incidencia/crear/")
+    Call<Boolean> put_crear_incidencia();
+    @POST("/incidencia/cerrar/id/{id}")
+    Call<Boolean> post_cerrar_incidencia(@Path("id") int id);
+    @POST("/incidencia/rechazar/id/{id}")
+    Call<Boolean> post_rechazar_incidencia(@Path("id") int id);
+    @GET("/incidencias/creador/id/{id}")
+    Call<Boolean> get_incidencias_de_creador(@Path("id") int id);
+    @GET("/incidencias/solucionador/id/{id}")
+    Call<Boolean> get_incidencias_de_solucionador(@Path("id") int id);
+    @POST("/incidencia/id/{id}/mensaje/nuevo/{texto}/usuario/id{id_usuario}")
+    Call<Boolean> post_nuevo_mensaje_en_incidencia(@Path("id_usuario") int id_usuario);
+    @POST("/mensaje/eliminar/{id}")
+    Call<Boolean> post_eliminar_mensaje(@Path("id") int id);
+    @POST("/incidencia/id/{nombre}/comentario/nuevo/{texto}/usuario/id{id_usuario}")
+    Call<Boolean> post_nuevo_comentario_de_incidencia(@Path("id_usuario") int id_usuario);
+    @POST("/comentario/eliminar/{id}")
+    Call<Boolean> post_liminar_comentario(@Path("id") int id);
+    @POST("/mensaje/{id}/comentario/nuevo/{texto}/usuario/id/{id_usuario}")
+    Call<Boolean> post_nuevo_comentario_en_mensaje(@Path("id_usuario") int id_usuario);
 
 }

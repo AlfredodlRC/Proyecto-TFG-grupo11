@@ -1,0 +1,5 @@
+fastapi: http://trucosandroidstudio.blogspot.com/2015/06/como-escoger-que-activity-lanzar-como.html
+retrofit: console.firebase.google.com/project/ticktask-e15a9/firestore/data/~2Fcomentarios~2F1?hl=es
+firebase: https://cloud.google.com/firestore/docs/query-data/get-data?hl=es-419#python_2
+firebase: https://cloud.google.com/firestore/docs/manage-data/add-data?hl=es-419
+Cambio de actividad inicial: http://trucosandroidstudio.blogspot.com/2015/06/como-escoger-que-activity-lanzar-como.html
