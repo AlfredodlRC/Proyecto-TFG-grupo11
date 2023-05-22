@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="green">#008080</color>
+    <color name="green1">#4DB686</color>
+    <color name="grey">#C0C0C0</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="orange">#FF5722</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <string name="ForgotPass">Forgot password?</string>
+    <string name="InputConfirm">Confirm Password</string>
+    <string name="InputPhone">Phone</string>
+    <string name="Login">Login</string>
+    <string name="Switch1">Remember Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="app_name">ticket_example</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hintEmail">Email</string>
+    <string name="hintPassword">Password</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="logout">LogOut</string>
+    <string name="newPass">New Password</string>
+    <string name="nombre_ticket">Nombre ticket</string>
+    <string name="persona_asignada">Persona asignada</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="sendEmail">Send Email</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signUpButton">Sign Up</string>
+    <string name="signup">Sign Up </string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="textPass">Have you forgotten the password? </string>
+    <string name="textplane">Don`t have account? </string>
+    <string name="title_activity_create">Create_activity</string>
+    <string name="title_activity_create_acivity">Create_acivity</string>
+    <string name="title_activity_create_ativity">Create_ativity</string>
+    <string name="title_activity_create_incidencia">Create_incidencia</string>
+    <string name="title_activity_create_ticket">Create_ticket</string>
+    <string name="title_activity_reat_ticket">reat_ticket</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="welcome">"Welcome !"</string>
+    <style name="Base.Theme.Ticket_example" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Ticket_example" parent="Base.Theme.Ticket_example"/>
+    <style name="Theme.Ticket_example.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="Theme.Ticket_example.Fullscreen" parent="Theme.Ticket_example">
+        <item name="android:actionBarStyle">
+            @style/Widget.Theme.Ticket_example.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+    <style name="Theme.Ticket_example.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Ticket_example.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="ThemeOverlay.Ticket_example.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+    <style name="Widget.Theme.Ticket_example.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+    <style name="Widget.Theme.Ticket_example.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+    <declare-styleable name="FullscreenAttrs">
+        <attr format="color" name="fullscreenBackgroundColor"/>
+        <attr format="color" name="fullscreenTextColor"/>
+    </declare-styleable>
+</resources>
