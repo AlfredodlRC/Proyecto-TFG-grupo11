@@ -2,7 +2,7 @@ package com.example.ticktask.retrofit.POJOS;
 
 
 
-public class Usuario_login {
+public class Respuesta_usuario_login {
 
     boolean login;
 

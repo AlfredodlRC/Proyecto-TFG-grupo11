@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import com.example.ticktask.retrofit.MyApiAdapter;
 import com.example.ticktask.retrofit.MyApiService;
-import com.example.ticktask.retrofit.POJOS.Departamento;
-import com.example.ticktask.retrofit.POJOS.Usuario_login;
-
-import java.io.IOException;
-import java.util.List;
+import com.example.ticktask.retrofit.POJOS.Respuesta_usuario_login;
+import com.example.ticktask.retrofit.POJOS.Usuario_login_email;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +25,7 @@ public class Activity_Login extends AppCompatActivity {
 
     TextView buttonSignUp;
 
-    Usuario_login usuario;
+    Respuesta_usuario_login usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +37,40 @@ public class Activity_Login extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 MyApiService servicio = MyApiAdapter.getApiService();
-                /**
+
                 try {
-                    String email = "Alfredo";
+                    String email = "alfredo@gmail.com";
                     String contrasenya ="1234";
-                    Call<Usuario_login> llamada = servicio.getLogin_email(email,contrasenya);
-                    llamada.enqueue(new Callback<Usuario_login>() {
+                    Usuario_login_email usuario_pedicion = new Usuario_login_email();
+                    usuario_pedicion.setEmail(email);
+                    usuario_pedicion.setContrasenya(contrasenya);
+                    Call<Respuesta_usuario_login> llamada = servicio.getLogin_email(usuario_pedicion);
+                    llamada.enqueue(new Callback<Respuesta_usuario_login>() {
                         @Override
-                        public void onResponse(Call<Usuario_login> call, Response<Usuario_login> response) {
+                        public void onResponse(Call<Respuesta_usuario_login> call, Response<Respuesta_usuario_login> response) {
                               usuario = response.body();
-                        }
+                              if (usuario.getLogin()) {
+                                  Log.println(Log.ASSERT, "", "Loqueado");
+                                  Log.println(Log.ASSERT,"",usuario.getNombre());
+                                  Log.println(Log.ASSERT,"",usuario.getId());
+                                  Intent intent = new Intent(Activity_Login.this, MainActivity.class);
+                                  intent.putExtra("nombre", usuario.getNombre());
+                                  intent.putExtra("id",usuario.getId());
+                                  startActivity(intent);
+                              } else {
+                                  Log.println(Log.ASSERT, "", "No Loqueado");
+
+                              }
+                            }
                         @Override
-                        public void onFailure(Call<Usuario_login> call, Throwable t) {
+                        public void onFailure(Call<Respuesta_usuario_login> call, Throwable t) {
                         }
                     });
 
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                Log.println(Log.ASSERT,"",usuario.getNombre());
-                     */
-                Intent intent = new Intent(Activity_Login.this, MainActivity.class);
-                intent.putExtra("nombre", usuario.getNombre());
-                intent.putExtra("id",usuario.getId());
-                startActivity(intent);
+
 
             }
         });

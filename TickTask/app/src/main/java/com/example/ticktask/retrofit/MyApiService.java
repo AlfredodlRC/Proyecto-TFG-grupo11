@@ -4,7 +4,9 @@ import com.example.ticktask.retrofit.POJOS.Departamento;
 import com.example.ticktask.retrofit.POJOS.Estado;
 import com.example.ticktask.retrofit.POJOS.Prioridad;
 import com.example.ticktask.retrofit.POJOS.Tipo_incidencia;
-import com.example.ticktask.retrofit.POJOS.Usuario_login;
+import com.example.ticktask.retrofit.POJOS.Respuesta_usuario_login;
+import com.example.ticktask.retrofit.POJOS.Usuario_login_email;
+import com.example.ticktask.retrofit.POJOS.Usuario_login_nombre;
 import com.example.ticktask.retrofit.POJOS.Usuario_simple;
 
 import java.util.List;
@@ -19,16 +21,14 @@ import retrofit2.http.Query;
 
 public interface MyApiService {
     @POST("/login/nombre")
-    Call<Usuario_login> getLogin_nombre(
-            @Query("nombre") String username,
-            @Query("contrasenya") String contrasenya
-    );
+    Call<Respuesta_usuario_login> getLogin_nombre(
+            @Body Usuario_login_nombre usuario
+            );
 
     @POST("/login/email")
-    Call<Usuario_login> getLogin_email(
-            @Query("email") String username,
-            @Query("contrasenya") String contrasenya
-    );
+    Call<Respuesta_usuario_login> getLogin_email(
+            @Body Usuario_login_email usuario
+            );
     @GET("/departamentos")
     Call<List<Departamento>> get_departamentos();
     @GET("/estados")

@@ -15,9 +15,11 @@ async def login_nombre(usu: Usu):
     return resultado
 
 @router.post("/login/email")
-async def login_nombre(usu: Usu_email):
+async def login_email(usu: Usu_email):
     acceso = AccesoBBDD()
+    print(usu.email,"--",usu.contrasenya)
     resultado = acceso.login_email(usu.email,usu.contrasenya)
+    print(resultado)
     return resultado
 
 
