@@ -181,18 +181,15 @@ class AccesoBBDD():
                     fk_departamento_destino = departamento.pk
             estados = self.obtener_estados()
             for estado in estados:
-                print(estado.nombre,incidencia.estado)
                 if estado.nombre == incidencia.estado:
                     fk_estado = estado.pk
-            print(estados)
             prioridades = self.obtener_prioridades()
-            print(prioridades)
             for prioridad in prioridades:
                 print(prioridad.nombre,incidencia.prioridad)
                 if prioridad.nombre == incidencia.prioridad:
                     fk_prioridad = prioridad.pk
-            print(fk_prioridad)
             tipos = self.obtener_tipo_incidencias()
+            fk_tipo_incidencia = 0
             for tipo in tipos:
                 if tipo.nombre == incidencia.tipo_incidencia:
                     fk_tipo_incidencia = tipo.pk
@@ -204,9 +201,11 @@ class AccesoBBDD():
                     fk_persona_destino = persona.id
                 if persona.get('nombre') == incidencia.persona_origen:
                     fk_persona_origen = persona.id
-
             datos = {
                 "descripcion": incidencia.descripcion,
+                "fk_persona_destino": fk_persona_destino,
+                "fk_persona_origen": fk_persona_origen,
+                "fk_tipo_incidencia": fk_tipo_incidencia,
                 "fecha_creacion": datetime.datetime.now(),
                 "fecha_finalizacion": datetime.datetime.now(),
                 "nombre": incidencia.nombre,
@@ -214,12 +213,11 @@ class AccesoBBDD():
                 "fk_estado": fk_estado,
                 "fk_departamento_destino": fk_departamento_destino,
                 "tiempo_resolucion": 0,
-                "fk_persona_destino": fk_persona_destino,
-                "fk_persona_origen": fk_persona_origen,
-                "fk_tipo_incidencia": fk_tipo_incidencia
             }
+            print("--------------------")
             print(datos)
             id = self.indice_maximo("incidencias") + 1
+            print(id)
     
             self.__db__.collection("incidencias").document(str(id)).set(datos)
             return True

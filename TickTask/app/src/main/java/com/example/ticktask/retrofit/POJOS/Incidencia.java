@@ -1,108 +1,108 @@
 package com.example.ticktask.retrofit.POJOS;
 
 public class Incidencia {
-        private String descripcion;
-        private String fecha_creacion;
-        private String fecha_finalizacion;
-        private String nombre;
-        private float fk_prioridad;
-        private float fk_estado;
-        private float fk_departamento_destino;
-        private float tiempo_resolucion;
-        private float fk_persona_destino;
-        private float fk_persona_origen;
-        private float fk_tipo_incidencia;
 
-        public Incidencia() {
+    private int pk = 0;
+    private String descripcion;
+    private String fecha_creacion;
+    private String fecha_finalizacion;
+    private String departamento_destino;
+    private String estado;
+    private String persona_destino;
+    private String persona_origen;
+    private String prioridad;
+    private String tipo_incidencia;
+    private String nombre;
+    private int tiempo_resolucion;
+
+    public Incidencia() {
         }
 
-        public String getDescripcion() {
-            return descripcion;
-        }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-        public String getFecha_creacion() {
-            return fecha_creacion;
-        }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-        public String getFecha_finalizacion() {
-            return fecha_finalizacion;
-        }
+    public String getFecha_creacion() {
+        return fecha_creacion;
+    }
 
-        public String getNombre() {
-            return nombre;
-        }
+    public void setFecha_creacion(String fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
 
-        public float getFk_prioridad() {
-            return fk_prioridad;
-        }
+    public String getFecha_finalizacion() {
+        return fecha_finalizacion;
+    }
 
-        public float getFk_estado() {
-            return fk_estado;
-        }
+    public void setFecha_finalizacion(String fecha_finalizacion) {
+        this.fecha_finalizacion = fecha_finalizacion;
+    }
 
-        public float getFk_departamento_destino() {
-            return fk_departamento_destino;
-        }
+    public String getNombre() {
+        return nombre;
+    }
 
-        public float getTiempo_resolucion() {
-            return tiempo_resolucion;
-        }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-        public float getFk_persona_destino() {
-            return fk_persona_destino;
-        }
+    public String getPrioridad() {
+        return prioridad;
+    }
 
-        public float getFk_persona_origen() {
-            return fk_persona_origen;
-        }
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
 
-        public float getFk_tipo_incidencia() {
-            return fk_tipo_incidencia;
-        }
+    public String getEstado() {
+        return estado;
+    }
 
-        // Setter Methods
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-        public void setDescripcion( String descripcion ) {
-            this.descripcion = descripcion;
-        }
+    public String getDepartamento_destino() {
+        return departamento_destino;
+    }
 
-        public void setFecha_creacion( String fecha_creacion ) {
-            this.fecha_creacion = fecha_creacion;
-        }
+    public void setDepartamento_destino(String departamento_destino) {
+        this.departamento_destino = departamento_destino;
+    }
 
-        public void setFecha_finalizacion( String fecha_finalizacion ) {
-            this.fecha_finalizacion = fecha_finalizacion;
-        }
+    public float getTiempo_resolucion() {
+        return tiempo_resolucion;
+    }
 
-        public void setNombre( String nombre ) {
-            this.nombre = nombre;
-        }
+    public void setTiempo_resolucion(int tiempo_resolucion) {
+        this.tiempo_resolucion = tiempo_resolucion;
+    }
 
-        public void setFk_prioridad( float fk_prioridad ) {
-            this.fk_prioridad = fk_prioridad;
-        }
+    public String getPersona_destino() {
+        return persona_destino;
+    }
 
-        public void setFk_estado( float fk_estado ) {
-            this.fk_estado = fk_estado;
-        }
+    public void setPersona_destino(String persona_destino) {
+        this.persona_destino = persona_destino;
+    }
 
-        public void setFk_departamento_destino( float fk_departamento_destino ) {
-            this.fk_departamento_destino = fk_departamento_destino;
-        }
+    public String getPersona_origen() {
+        return persona_origen;
+    }
 
-        public void setTiempo_resolucion( float tiempo_resolucion ) {
-            this.tiempo_resolucion = tiempo_resolucion;
-        }
+    public void setPersona_origen(String persona_origen) {
+        this.persona_origen = persona_origen;
+    }
 
-        public void setFk_persona_destino( float fk_persona_destino ) {
-            this.fk_persona_destino = fk_persona_destino;
-        }
+    public String getTipo_incidencia() {
+        return tipo_incidencia;
+    }
 
-        public void setFk_persona_origen( float fk_persona_origen ) {
-            this.fk_persona_origen = fk_persona_origen;
-        }
-
-        public void setFk_tipo_incidencia( float fk_tipo_incidencia ) {
-            this.fk_tipo_incidencia = fk_tipo_incidencia;
-        }
+    public void setTipo_incidencia(String tipo_incidencia) {
+        this.tipo_incidencia = tipo_incidencia;
+    }
 }

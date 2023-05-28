@@ -27,6 +27,10 @@ public class PerfilActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneEditText;
     private EditText departmentEditText;
+
+    private String nombre_usuario;
+    private String id_usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

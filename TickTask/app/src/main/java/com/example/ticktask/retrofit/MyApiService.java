@@ -2,6 +2,7 @@ package com.example.ticktask.retrofit;
 
 import com.example.ticktask.retrofit.POJOS.Departamento;
 import com.example.ticktask.retrofit.POJOS.Estado;
+import com.example.ticktask.retrofit.POJOS.Incidencia;
 import com.example.ticktask.retrofit.POJOS.Prioridad;
 import com.example.ticktask.retrofit.POJOS.Tipo_incidencia;
 import com.example.ticktask.retrofit.POJOS.Respuesta_usuario_login;
@@ -17,7 +18,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface MyApiService {
     @POST("/login/nombre")
@@ -26,9 +26,7 @@ public interface MyApiService {
             );
 
     @POST("/login/email")
-    Call<Respuesta_usuario_login> getLogin_email(
-            @Body Usuario_login_email usuario
-            );
+    Call<Respuesta_usuario_login> getLogin_email(@Body Usuario_login_email usuario);
     @GET("/departamentos")
     Call<List<Departamento>> get_departamentos();
     @GET("/estados")
@@ -40,15 +38,15 @@ public interface MyApiService {
     @GET("/usuarios/departamento/{id}")
     Call<List<Usuario_simple>> get_usuarios_de_departamento(@Path("id") int id);
     @PUT("/incidencia/crear/")
-    Call<Boolean> put_crear_incidencia();
+    Call<Boolean> put_crear_incidencia(@Body Incidencia incidencia);
     @POST("/incidencia/cerrar/id/{id}")
     Call<Boolean> post_cerrar_incidencia(@Path("id") int id);
     @POST("/incidencia/rechazar/id/{id}")
     Call<Boolean> post_rechazar_incidencia(@Path("id") int id);
     @GET("/incidencias/creador/id/{id}")
-    Call<Boolean> get_incidencias_de_creador(@Path("id") int id);
+    Call<List<Incidencia>> get_incidencias_de_creador(@Path("id") int id);
     @GET("/incidencias/solucionador/id/{id}")
-    Call<Boolean> get_incidencias_de_solucionador(@Path("id") int id);
+    Call<List<Incidencia>> get_incidencias_de_solucionador(@Path("id") int id);
     @POST("/incidencia/id/{id}/mensaje/nuevo/{texto}/usuario/id{id_usuario}")
     Call<Boolean> post_nuevo_mensaje_en_incidencia(@Path("id_usuario") int id_usuario);
     @POST("/mensaje/eliminar/{id}")
