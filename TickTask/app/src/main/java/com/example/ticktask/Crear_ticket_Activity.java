@@ -109,16 +109,26 @@ public class Crear_ticket_Activity extends AppCompatActivity {
             public void onClick(View view){
                 MyApiService servicio = MyApiAdapter.getApiService();
 
-                String titulo = "";
-                String descripcion = "";
+
+                // Obtener los valores ingresados por el usuario
+                String titulo = ET_titulo.getText().toString();
+                String descripcion = ET_descripcion.getText().toString();
+
                 float fk_tipo_incidencia = 0;
                 float fk_departamento_destino = 0;
                 float fk_persona_destino = 0;
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
-                String ahora = sdf.format(new Date());
 
-                EditText ET_descripcion = findViewById(R.id.textedit_descripcion);
-                EditText ET_titulo = findViewById(R.id.textedit_titulo);
+                //obtenemos la fecha actual
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+                String fechaCreacion = sdf.format(new Date());
+                //String ahora = sdf.format(new Date());
+
+                // Obtener la persona y el departamento asignados desde los spinners
+                String personaAsignada = spiner_persona.getSelectedItem().toString();
+                String departamentoAsignado = spiner_departamento.getSelectedItem().toString();
+
+              //  EditText ET_descripcion = findViewById(R.id.textedit_descripcion);
+                //EditText ET_titulo = findViewById(R.id.textedit_titulo);
 
                 Spinner spiner_tipo = findViewById(R.id.spinner_tipo);
                 String tipo_incidencia = spiner_tipo.getSelectedItem().toString();
@@ -134,7 +144,7 @@ public class Crear_ticket_Activity extends AppCompatActivity {
 
                 incidencia.setNombre(titulo);
                 incidencia.setDescripcion(descripcion);
-                incidencia.setFecha_creacion(ahora);
+                incidencia.setFecha_creacion(fechaCreacion);
                 incidencia.setFecha_finalizacion("");
                 incidencia.setTiempo_resolucion(-1);
                 incidencia.setPersona_origen(nombre_usuario);
@@ -153,9 +163,15 @@ public class Crear_ticket_Activity extends AppCompatActivity {
                              Boolean respuesta =response.body();
                              Log.println(Log.ASSERT,"", String.valueOf(respuesta));
 
-                             Intent intent = new Intent(Crear_ticket_Activity.this, MainActivity.class);
-                             intent.putExtra("nombre", nombre_usuario);
-                             intent.putExtra("id",id_usuario);
+                             Intent intent = new Intent(Crear_ticket_Activity.this, Listado_tickets_Activity.class);
+
+                             // Agregar los datos como extras al Intent
+
+                             intent.putExtra("titulo", titulo);
+                             intent.putExtra("descripcion", descripcion);
+                             intent.putExtra("fechaCreacion", fechaCreacion);
+                             intent.putExtra("personaAsignada", personaAsignada);
+                             intent.putExtra("departamentoAsignado", departamentoAsignado);
                              startActivity(intent);
                          }
                          @Override

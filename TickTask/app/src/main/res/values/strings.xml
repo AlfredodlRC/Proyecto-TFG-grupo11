@@ -79,4 +79,17 @@
 
     <string name="profile">Perfil</string>
     <string name="SignOut">Cerrar Sesion</string>
+
+    <string name="nameTicket">Nombre Ticket</string>
+    <string name="deptAsig">Departamento Asignado</string>
+    <string name="persoasig">Persona asiganada</string>
+
+    <string name="newticket">CREAR TICKET</string>
+    <string name="title">Titulo </string>
+    <string name="type"> Prioridad</string>
+    <string name="accept"> Aceptar</string>
+    <string name="description"> Descripcion</string>
+    <string name="cancel">Cancelar</string>
+
+
 </resources>

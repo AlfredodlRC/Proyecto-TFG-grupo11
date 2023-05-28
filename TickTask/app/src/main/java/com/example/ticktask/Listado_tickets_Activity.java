@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.view.WindowCompat;
@@ -49,6 +51,26 @@ public class Listado_tickets_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_listado_tickets);
 
         // recogemos el nombre y el id del usuario
+        String titulo = getIntent().getStringExtra("titulo");
+        String descripcion = getIntent().getStringExtra("descripcion");
+        String fechaCreacion = getIntent().getStringExtra("fechaCreacion");
+        String personaAsignada = getIntent().getStringExtra("personaAsignada");
+        String departamentoAsignado = getIntent().getStringExtra("departamentoAsignado");
+
+        // Mostrar los datos en los elementos correspondientes
+            TextView textViewTitulo = findViewById(R.id.textedit_titulo);
+             TextView textViewDescripcion = findViewById(R.id.TVdescripcion);
+        TextView textViewFechaCreacion = findViewById(R.id.TVfecha_creacion);
+        TextView textViewPersonaAsignada = findViewById(R.id.TVpersona_asignada);
+        TextView textViewDepartamentoAsignado = findViewById(R.id.TVdepartamento);
+
+        textViewTitulo.setText(titulo);
+        textViewDescripcion.setText(descripcion);
+        textViewFechaCreacion.setText(fechaCreacion);
+        textViewPersonaAsignada.setText(personaAsignada);
+        textViewDepartamentoAsignado.setText(departamentoAsignado);
+
+
         this.nombre_usuario = getIntent().getStringExtra("nombre");
         this.id_usuario = getIntent().getStringExtra("id");
         this.asignados = getIntent().getBooleanExtra("asignados",false);
