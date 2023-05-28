@@ -17,10 +17,17 @@ public class MainActivity extends AppCompatActivity {
     private CardView  Btn_ticket_creados;
     private CardView Btn_ticket_asignados;
 
+    private String nombre_usuario;
+    private String id_usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // recogemos el nombre y el id del usuario
+        this.nombre_usuario = getIntent().getStringExtra("nombre");
+        this.id_usuario = getIntent().getStringExtra("id");
 
         //llmamaos la variable de boton imagen
         Btn_perfil= findViewById(R.id.Btn_perfil);
@@ -49,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, Crear_ticket_Activity.class);
+                intent.putExtra("nombre", nombre_usuario);
+                intent.putExtra("id",id_usuario);
                 startActivity(intent);
             }
         });
@@ -58,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, Listado_tickets_Activity.class);
+                intent.putExtra("nombre", nombre_usuario);
+                intent.putExtra("id",id_usuario);
+                intent.putExtra("asignados",true);
+                intent.putExtra("creados",false);
                 startActivity(intent);
             }
         });
@@ -67,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, Listado_tickets_Activity.class);
+                intent.putExtra("nombre", nombre_usuario);
+                intent.putExtra("id",id_usuario);
+                intent.putExtra("asignados",false);
+                intent.putExtra("creados",true);
                 startActivity(intent);
             }
         });
@@ -86,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                     // Acciones cuando se selecciona "Perfil"
                     Toast.makeText(MainActivity.this, "Perfil", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+                    intent.putExtra("nombre", nombre_usuario);
+                    intent.putExtra("id",id_usuario);
                     startActivity(intent);
                     return true;
                 } else if (item.getItemId() == R.id.menu_logout) {
@@ -94,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, Activity_Login.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpiar la pila de actividades
+                    intent.putExtra("nombre", nombre_usuario);
+                    intent.putExtra("id",id_usuario);
                     startActivity(intent);
                     finish(); // Finalizar la actividad actual
                     return true;

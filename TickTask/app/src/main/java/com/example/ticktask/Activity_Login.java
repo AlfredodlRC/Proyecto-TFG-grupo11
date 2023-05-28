@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ticktask.retrofit.MyApiAdapter;
 import com.example.ticktask.retrofit.MyApiService;
 import com.example.ticktask.retrofit.POJOS.Respuesta_usuario_login;
 import com.example.ticktask.retrofit.POJOS.Usuario_login_email;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,12 +27,19 @@ public class Activity_Login extends AppCompatActivity {
 
     TextView buttonSignUp;
 
+    TextInputEditText textinputEmail;
+
+    TextInputEditText textinputPassword;
     Respuesta_usuario_login usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        textinputEmail = findViewById(R.id.textoEmail);
+
+        textinputPassword = findViewById(R.id.textoPassword);
 
         bottomLogin  = findViewById(R.id.bottomLogin);
         bottomLogin.setOnClickListener(new View.OnClickListener(){
@@ -39,8 +48,10 @@ public class Activity_Login extends AppCompatActivity {
                 MyApiService servicio = MyApiAdapter.getApiService();
 
                 try {
-                    String email = "alfredo@gmail.com";
-                    String contrasenya ="1234";
+                    String email = String.valueOf(textinputEmail.getText());
+                    String contrasenya = String.valueOf(textinputPassword.getText());
+                    //String email = "alfredo@gmail.com";
+                    //String contrasenya = "1234";
                     Usuario_login_email usuario_pedicion = new Usuario_login_email();
                     usuario_pedicion.setEmail(email);
                     usuario_pedicion.setContrasenya(contrasenya);
@@ -59,11 +70,13 @@ public class Activity_Login extends AppCompatActivity {
                                   startActivity(intent);
                               } else {
                                   Log.println(Log.ASSERT, "", "No Loqueado");
+                                  Toast.makeText(getApplicationContext(),"login incorrecto",Toast.LENGTH_LONG);
 
                               }
                             }
                         @Override
                         public void onFailure(Call<Respuesta_usuario_login> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(),"No se pudo conectar al servidor",Toast.LENGTH_LONG);
                         }
                     });
 
@@ -94,5 +107,7 @@ public class Activity_Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

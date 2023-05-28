@@ -4,8 +4,8 @@ from pydantic import BaseModel
 class Incidencia_API(BaseModel):
     pk: int
     descripcion: str
-    fecha_creacion: datetime
-    fecha_finalizacion: datetime | None = None
+    fecha_creacion: str
+    fecha_finalizacion: srt
     departamento_destino: str
     estado: str
     persona_destino: str

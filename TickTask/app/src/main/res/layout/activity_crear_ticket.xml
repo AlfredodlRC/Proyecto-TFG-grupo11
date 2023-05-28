@@ -6,149 +6,140 @@
     android:layout_height="match_parent"
     tools:context=".Crear_ticket_Activity">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="20dp"
-            android:text="Departamento asignado"
-            app:layout_constraintStart_toStartOf="parent"
-            />
 
         <Button
             android:id="@+id/Btn_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
             android:text="Cancelar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SPN_persona_asignada" />
-
-
-
-
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="130dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="264dp"
-            android:text="persona asignada"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SPN_departamento" />
+            app:layout_constraintTop_toBottomOf="@+id/textedit_descripcion" />
 
         <Button
             android:id="@+id/Btn_aceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
             android:text="Aceptar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SPN_persona_asignada" />
+            app:layout_constraintTop_toBottomOf="@+id/textedit_descripcion" />
 
-        <Spinner
-            android:id="@+id/SPN_persona_asignada"
-            android:layout_width="200dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="171dp"
+            android:layout_marginTop="16dp"
+            android:text="Creación de ticket"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/SPN_departamento"
-            android:layout_width="200dp"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Titulo"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Departamento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_tipo" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
-            android:text="nombre ticket"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/box_nombre_ticket"
-            android:layout_width="331dp"
-            android:layout_height="61dp"
-            android:layout_marginTop="20dp"
-            app:boxStrokeColor="@color/green"
-            app:hintTextColor="@color/green"
+            android:layout_marginTop="16dp"
+            android:text="Persona a asignar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.362"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
+            app:layout_constraintTop_toBottomOf="@+id/spinner_departamento" />
 
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="319dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:hint="nombre"
-                    android:inputType="text"
-                    android:textColorHint="@color/green"
-                    android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/textedit_descripcion"
+            android:layout_width="320dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="Descripción"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/box_nombre_ticket" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/box_descripcion_ticket"
-            android:layout_width="331dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            app:boxStrokeColor="@color/green"
-            app:hintTextColor="@color/green"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.362"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="319dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:hint="nombre"
-                    android:inputType="text"
-                    android:textColorHint="@color/green"
-                    android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:text="Crear ticket"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_persona" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tipo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textedit_titulo" />
+
+        <Spinner
+            android:id="@+id/spinner_tipo"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <Spinner
+            android:id="@+id/spinner_departamento"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <Spinner
+            android:id="@+id/spinner_persona"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <EditText
+            android:id="@+id/textedit_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.562"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
