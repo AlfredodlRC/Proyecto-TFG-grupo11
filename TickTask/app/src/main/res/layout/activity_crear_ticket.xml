@@ -8,25 +8,25 @@
 
         <Button
             android:id="@+id/Btn_cancelar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_width="114dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="44dp"
             android:backgroundTint="@color/green"
             android:text="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.284"
+            app:layout_constraintHorizontal_bias="0.29"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textedit_descripcion" />
 
         <Button
             android:id="@+id/Btn_aceptar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_width="111dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="44dp"
             android:backgroundTint="@color/green"
             android:text="@string/accept"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.722"
+            app:layout_constraintHorizontal_bias="0.744"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textedit_descripcion" />
 
@@ -37,7 +37,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/newticket"
             android:textColor="@color/green"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:text="@string/department"
             android:textColor="@color/green"
             android:textSize="16sp"
@@ -71,7 +71,7 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:text="@string/persoasig"
             android:textSize="16sp"
             android:textColor="@color/green"
@@ -81,34 +81,35 @@
 
         <EditText
             android:id="@+id/textedit_descripcion"
-            android:layout_width="265dp"
-            android:layout_height="37dp"
+            android:layout_width="266dp"
+            android:layout_height="72dp"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/description"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_tipoticket" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="@string/description"
-            android:textSize="16sp"
             android:textColor="@color/green"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_persona" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_tipoticket" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:text="@string/type"
             android:textSize="16sp"
             android:textColor="@color/green"
@@ -119,8 +120,7 @@
         <Spinner
             android:id="@+id/spinner_tipo"
             android:layout_width="250dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -129,7 +129,6 @@
             android:id="@+id/spinner_departamento"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -138,7 +137,6 @@
             android:id="@+id/spinner_persona"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -147,19 +145,19 @@
             android:id="@+id/tiposolicitud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/solicitud"
             android:textColor="@color/green"
             android:textSize="16sp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_persona" />
 
         <Spinner
             android:id="@+id/spinner_tipoticket"
             android:layout_width="250dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,9 +165,8 @@
 
         <EditText
             android:id="@+id/textedit_titulo"
-            android:layout_width="179dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="193dp"
+            android:layout_height="44dp"
             android:ems="10"
             android:hint="@string/nombre"
             android:inputType="text"

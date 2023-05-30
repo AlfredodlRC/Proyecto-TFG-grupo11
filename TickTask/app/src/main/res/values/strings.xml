@@ -96,7 +96,13 @@
     <string name="fechaCrea">Fecha De Creacion</string>
     <string name="creadopor">Creado Por:</string>
 
-
+    <string name="nombre_ticket">Nombre ticket : %1$s</string>
+    <string name="tipo_solicitud">Tipo de Solicitud : %1$s</string>
+    <string name="Prioridad">Prioridad : %1$s</string>
+    <string name="date">Fecha de creacion : %1$s</string>
+    <string name="departamento">Departamento asignado : %1$s</string>
+    <string name="Usuario_Asignado">Usuario Asignado : %1$s</string>
+    <string name="descriptionText">Descripcion : %1$s</string>
 
 
 </resources>

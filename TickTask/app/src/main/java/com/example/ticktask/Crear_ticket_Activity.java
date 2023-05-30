@@ -19,6 +19,7 @@ import com.example.ticktask.retrofit.MyApiService;
 import com.example.ticktask.retrofit.POJOS.Departamento;
 import com.example.ticktask.retrofit.POJOS.Estado;
 import com.example.ticktask.retrofit.POJOS.Incidencia;
+import com.example.ticktask.retrofit.POJOS.Prioridad;
 import com.example.ticktask.retrofit.POJOS.Respuesta_usuario_login;
 import com.example.ticktask.retrofit.POJOS.Tipo_incidencia;
 import com.example.ticktask.retrofit.POJOS.Usuario_login_email;
@@ -54,7 +55,7 @@ public class Crear_ticket_Activity extends AppCompatActivity {
     Spinner spiner_tipo;
     Spinner spiner_departamento;
     Spinner spiner_persona;
-    Spinner lista_tipo;
+    Spinner spinner_tipoticket;
 
 
 
@@ -72,7 +73,9 @@ public class Crear_ticket_Activity extends AppCompatActivity {
 
         // desplegable tipo
         spiner_tipo = findViewById(R.id.spinner_tipo);
-        lista_tipos = coger_lista_tipos();
+        spinner_tipoticket= findViewById(R.id.spinner_tipoticket);
+        coger_lista_tipos_solicitud();
+        coger_lista_tipos();
 
 
         // desplegable departamento
@@ -82,6 +85,7 @@ public class Crear_ticket_Activity extends AppCompatActivity {
         // desplegable personas
         spiner_persona = findViewById(R.id.spinner_persona);
         lista_empleados_departamento = coger_lista_empleados_departamento(1);
+
 
 
         // recogemos el nombre y el id del usuario
@@ -121,7 +125,7 @@ public class Crear_ticket_Activity extends AppCompatActivity {
 
                 // Obtener el tipo de incidencia y la prioridad seleccionados desde los spinners
                 String tipoIncidencia = spiner_tipo.getSelectedItem().toString();
-                String prioridad = lista_tipo.getSelectedItem().toString();
+                String prioridad = spinner_tipoticket.getSelectedItem().toString();
 
                 //obtenemos la fecha actual
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
@@ -251,7 +255,7 @@ public class Crear_ticket_Activity extends AppCompatActivity {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
         return resultado;
     }
 
@@ -315,4 +319,36 @@ public class Crear_ticket_Activity extends AppCompatActivity {
             throw new RuntimeException(e);
         }        return resultado;
     }
+
+    private void coger_lista_tipos_solicitud(){
+        MyApiService servicio = MyApiAdapter.getApiService();
+        try {
+            Call<List<Prioridad>> llamada = servicio.get_Prioridades();
+            llamada.enqueue(new Callback<List<Prioridad>>() {
+                @Override
+                public void onResponse(Call<List<Prioridad>> call, Response<List<Prioridad>> response) {
+                    if(response.isSuccessful()){
+                        List<Prioridad> respuesta = response.body();
+                        List<String> nombre_tipos_solicitud = new ArrayList<>();
+                        for (Prioridad tipo: respuesta){
+                            nombre_tipos_solicitud.add(tipo.getNombre());
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(Crear_ticket_Activity.this, android.R.layout.simple_spinner_dropdown_item, nombre_tipos_solicitud);
+                        spinner_tipoticket.setAdapter(adapter);
+                    }else {
+                        Log.e("API CALL", "ERROR: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Prioridad>> call, Throwable t) {
+                    Log.e("API CALL", "ERROR: " + t.getMessage());
+                    Toast.makeText(getApplicationContext(), "No se puedo conectar al servidor", Toast.LENGTH_LONG).show();
+                }
+            });
+        }catch (Exception e){
+            Log.e("API CALL", "Error: " + e.getMessage());
+        }
+    }
+
 } // Fin clase

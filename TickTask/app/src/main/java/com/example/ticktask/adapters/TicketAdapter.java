@@ -34,14 +34,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
     @Override
     public void onBindViewHolder(@NonNull TicketViewHolder holder, int position){
         Ticket ticket = tickets.get(position);
-        holder.tvTitulo.setText(ticket.getTitulo());
-        holder.tvPrioridad.setText(ticket.getPrioridad());
-        holder.tvTipo.setText(ticket.getTipoIncidencia());
-        holder.tvFechaCreacion.setText(ticket.getFechaCreacion());
-        holder.tvPersonaCreadora.setText(ticket.getPersonaCreadora());
-        holder.tvDepartamento.setText(ticket.getDepartamento());
-        holder.tvPersonaAsignada.setText(ticket.getPersonaAsignada());
-        holder.tvDescripcion.setText(ticket.getDescripcion());
+        holder.tvTitulo.setText(context.getString(R.string.nombre_ticket, ticket.getTitulo()));
+        holder.tvPrioridad.setText(context.getString(R.string.tipo_solicitud, ticket.getPrioridad()));
+        holder.tvTipo.setText(context.getString(R.string.Prioridad,ticket.getTipoIncidencia()));
+        holder.tvFechaCreacion.setText(context.getString(R.string.date,ticket.getFechaCreacion()));
+     //   holder.tvPersonaCreadora.setText(context.getString(R.string.departamento,ticket.getPersonaCreadora()));
+        holder.tvDepartamento.setText(context.getString(R.string.departamento,ticket.getDepartamento()));
+        holder.tvPersonaAsignada.setText(context.getString(R.string.Usuario_Asignado,ticket.getPersonaAsignada()));
+        holder.tvDescripcion.setText(context.getString(R.string.descriptionText,ticket.getDescripcion()));
     }
 
     @Override
