@@ -54,8 +54,11 @@ public class Crear_ticket_Activity extends AppCompatActivity {
     Spinner spiner_tipo;
     Spinner spiner_departamento;
     Spinner spiner_persona;
+    Spinner lista_tipo;
 
 
+
+    public static List<Ticket> tickets = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,25 +111,26 @@ public class Crear_ticket_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 MyApiService servicio = MyApiAdapter.getApiService();
-
-
                 // Obtener los valores ingresados por el usuario
                 String titulo = ET_titulo.getText().toString();
                 String descripcion = ET_descripcion.getText().toString();
-
-                float fk_tipo_incidencia = 0;
-                float fk_departamento_destino = 0;
-                float fk_persona_destino = 0;
-
-                //obtenemos la fecha actual
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
-                String fechaCreacion = sdf.format(new Date());
-                //String ahora = sdf.format(new Date());
 
                 // Obtener la persona y el departamento asignados desde los spinners
                 String personaAsignada = spiner_persona.getSelectedItem().toString();
                 String departamentoAsignado = spiner_departamento.getSelectedItem().toString();
 
+                // Obtener el tipo de incidencia y la prioridad seleccionados desde los spinners
+                String tipoIncidencia = spiner_tipo.getSelectedItem().toString();
+                String prioridad = lista_tipo.getSelectedItem().toString();
+
+                //obtenemos la fecha actual
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+                String fechaCreacion = sdf.format(new Date());
+
+                float fk_tipo_incidencia = 0;
+                float fk_departamento_destino = 0;
+                float fk_persona_destino = 0;
+                //String ahora = sdf.format(new Date());
               //  EditText ET_descripcion = findViewById(R.id.textedit_descripcion);
                 //EditText ET_titulo = findViewById(R.id.textedit_titulo);
 
@@ -154,6 +158,20 @@ public class Crear_ticket_Activity extends AppCompatActivity {
                 incidencia.setEstado("pendiente");
                 incidencia.setPrioridad("media");
 
+                //añadimos y creamos el nuevoi ticket
+                Ticket ticket = new Ticket();
+                ticket.setTitulo(titulo);
+                ticket.setDescripcion(descripcion);
+                ticket.setFechaCreacion(fechaCreacion);
+                ticket.setPersonaAsignada(personaAsignada);
+                ticket.setDepartamentoAsignado(departamentoAsignado);
+                ticket.setTipoIncidencia(tipoIncidencia);
+                ticket.setPrioridad(prioridad);
+                // Añade el ticket a la lista
+                tickets.add(ticket);
+                System.out.println("Se añadió un ticket. Tamaño de la lista: " + tickets.size());
+
+
                 // Se envía la incidencia a la REST API y se vuelve a la pantalla principal
                  try {
                      Call<Boolean> llamada = servicio.put_crear_incidencia(incidencia);
@@ -172,6 +190,10 @@ public class Crear_ticket_Activity extends AppCompatActivity {
                              intent.putExtra("fechaCreacion", fechaCreacion);
                              intent.putExtra("personaAsignada", personaAsignada);
                              intent.putExtra("departamentoAsignado", departamentoAsignado);
+                             intent.putExtra("tipoIncidencia", tipoIncidencia);
+                             intent.putExtra("prioridad", prioridad);
+
+
                              startActivity(intent);
                          }
                          @Override
@@ -181,10 +203,9 @@ public class Crear_ticket_Activity extends AppCompatActivity {
                  } catch (Exception e) {
                      throw new RuntimeException(e);
                  }
-
-
-
             }
+
+
         });
 
         Btn_cancelar = findViewById(R.id.Btn_cancelar);

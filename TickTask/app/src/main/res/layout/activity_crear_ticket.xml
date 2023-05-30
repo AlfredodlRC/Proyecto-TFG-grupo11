@@ -22,11 +22,11 @@
             android:id="@+id/Btn_aceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/accept"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/green"
+            android:text="@string/accept"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.744"
+            app:layout_constraintHorizontal_bias="0.722"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textedit_descripcion" />
 
@@ -34,11 +34,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:text="@string/newticket"
-            android:textStyle="bold"
             android:textColor="@color/green"
             android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,16 +81,15 @@
 
         <EditText
             android:id="@+id/textedit_descripcion"
-            android:layout_width="255dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="265dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/description"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_tipoticket" />
 
         <TextView
             android:id="@+id/textView4"
@@ -144,14 +143,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        <EditText
-            android:id="@+id/textedit_titulo"
+        <TextView
+            android:id="@+id/tiposolicitud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/solicitud"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Spinner
+            android:id="@+id/spinner_tipoticket"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiposolicitud" />
+
+        <EditText
+            android:id="@+id/textedit_titulo"
+            android:layout_width="179dp"
+            android:layout_height="29dp"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:inputType="text"
             android:hint="@string/nombre"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintStart_toStartOf="parent"

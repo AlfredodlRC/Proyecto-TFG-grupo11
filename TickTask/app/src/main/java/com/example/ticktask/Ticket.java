@@ -3,28 +3,56 @@ package com.example.ticktask;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-    private String nombre;
-    private String descripcion;
+    private String titulo;
+    private String prioridad;
+    private String tipoIncidencia;
+    private String fechaCreacion;
+    private String personaCreadora;
     private String departamentoAsignado;
     private String personaAsignada;
+    private String descripcion;
 
-    public Ticket(String nombre, String descripcion, String departamentoAsignado, String personaAsignada) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+
+    //Creamos el constructor
+    public Ticket(String titulo, String prioridad, String tipoIncidencia, String fechaCreacion,
+                  String personaCreadora, String departamentoAsignado, String personaAsignada, String descripcion) {
+        this.titulo = titulo;
+        this.prioridad = prioridad;
+        this.tipoIncidencia = tipoIncidencia;
+        this.fechaCreacion = fechaCreacion;
+        this.personaCreadora = personaCreadora;
         this.departamentoAsignado = departamentoAsignado;
         this.personaAsignada = personaAsignada;
+        this.descripcion = descripcion;
     }
 
+    public Ticket() {
+
+    }
     // Getters
-    public String getNombre() {
-        return nombre;
+
+
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getPrioridad() {
+        return prioridad;
     }
 
-    public String getDepartamentoAsignado() {
+    public String getTipoIncidencia() {
+        return tipoIncidencia;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public String getPersonaCreadora() {
+        return personaCreadora;
+    }
+
+    public String getDepartamento() {
         return departamentoAsignado;
     }
 
@@ -32,48 +60,43 @@ public class Ticket implements Serializable {
         return personaAsignada;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     // Setters
-    public void setNombre(String nombre) {
-        //para que el nombre no sea nullo ni vacio
-        if (nombre == null || nombre.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nombre del ticket no puede estar vacío.");
-        }
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public void setTipoIncidencia(String tipoIncidencia) {
+        this.tipoIncidencia = tipoIncidencia;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public void setPersonaCreadora(String personaCreadora) {
+        this.personaCreadora = personaCreadora;
+    }
+
+    public void setDepartamentoAsignado(String departamentoAsignado) {
+        this.departamentoAsignado = departamentoAsignado;
+    }
+
+    public void setPersonaAsignada(String personaAsignada) {
+        this.personaAsignada = personaAsignada;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setDepartamentoAsignado(String departamentoAsignado) {
-        //para que el campo no sea nullo ni vacio
-        if (departamentoAsignado == null || departamentoAsignado.trim().isEmpty()) {
-            throw new IllegalArgumentException("El departamento asignado no puede estar vacío.");
-        }
-        this.departamentoAsignado = departamentoAsignado;
-    }
-
-    public void setPersonaAsignada(String personaAsignada) {
-        //para que el campo no sea nullo ni vacio
-        if (personaAsignada == null || personaAsignada.trim().isEmpty()) {
-            throw new IllegalArgumentException("La persona asignada no puede estar vacía.");
-        }
-        this.personaAsignada = personaAsignada;
-    }
-
-
-    //  fines de depuración y registro, y cuando el objeto Ticket como una cadena en tu interfaz de usuario.
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", departamentoAsignado='" + departamentoAsignado + '\'' +
-                ", personaAsignada='" + personaAsignada + '\'' +
-                '}';
-    }
 
 }
-
-
 

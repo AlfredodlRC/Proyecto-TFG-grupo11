@@ -90,6 +90,13 @@
     <string name="accept"> Aceptar</string>
     <string name="description"> Descripcion</string>
     <string name="cancel">Cancelar</string>
+    <string name="solicitud">Tipo de Solicitud</string>
+    <string name="prioridad">Prioridad</string>
+    <string name="tipo">Tipo De Incidencia</string>
+    <string name="fechaCrea">Fecha De Creacion</string>
+    <string name="creadopor">Creado Por:</string>
+
+
 
 
 </resources>

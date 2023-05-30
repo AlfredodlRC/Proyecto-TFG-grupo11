@@ -10,20 +10,51 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/ticket_name"
+            android:id="@+id/TVtitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nameTicket" />
 
         <TextView
-            android:id="@+id/ticket_department"
+            android:id="@+id/TVprioridad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prioridad"/>
+
+        <TextView
+            android:id="@+id/TVtipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo"/>
+
+        <TextView
+            android:id="@+id/TVfecha_creacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fechaCrea"/>
+
+        <TextView
+            android:id="@+id/TVpersona_creadora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/creadopor"/>
+
+        <TextView
+            android:id="@+id/TVdepartamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/deptAsig" />
-
         <TextView
-            android:id="@+id/ticket_person"
+            android:id="@+id/TVpersona_asignada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/persoasig"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/TVdescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description"/>
+
+
+
+</LinearLayout>
