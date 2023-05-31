@@ -103,6 +103,9 @@
     <string name="departamento">Departamento asignado : %1$s</string>
     <string name="Usuario_Asignado">Usuario Asignado : %1$s</string>
     <string name="descriptionText">Descripcion : %1$s</string>
+    <string name="buttonPend">Pendiente</string>
+    <string name="buttonRecha">Rechazado</string>
+    <string name="buttonResult">Resuelto</string>
 
 
 </resources>

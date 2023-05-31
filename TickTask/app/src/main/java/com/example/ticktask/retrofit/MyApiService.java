@@ -1,5 +1,6 @@
 package com.example.ticktask.retrofit;
 
+import com.example.ticktask.Ticket;
 import com.example.ticktask.retrofit.POJOS.Departamento;
 import com.example.ticktask.retrofit.POJOS.Estado;
 import com.example.ticktask.retrofit.POJOS.Incidencia;
@@ -57,5 +58,13 @@ public interface MyApiService {
     Call<Boolean> post_liminar_comentario(@Path("id") int id);
     @POST("/mensaje/{id}/comentario/nuevo/{texto}/usuario/id/{id_usuario}")
     Call<Boolean> post_nuevo_comentario_en_mensaje(@Path("id_usuario") int id_usuario);
+    // Suponemos que el endpoint para cambiar el estado de un ticket es "/incidencia/actualizar/{id}"
+
+    @PUT("/incidencia/actualizar/{id}")
+    Call<Boolean> put_actualizar_incidencia(@Path("id") int id, @Body Incidencia incidencia);
+
+
+
+
 
 }

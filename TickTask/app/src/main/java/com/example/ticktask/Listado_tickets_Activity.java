@@ -40,6 +40,7 @@ public class Listado_tickets_Activity extends AppCompatActivity {
     private TicketAdapter ticketAdapter;
     private RecyclerView recyclerView;
     private List<Ticket> tickets;
+    private MyApiService myApiService;
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
@@ -48,7 +49,8 @@ public class Listado_tickets_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         tickets = Crear_ticket_Activity.tickets;
 
-
+        //creamos el servicio
+        myApiService = MyApiAdapter.getApiService();
         if (tickets == null || tickets.isEmpty()) {
             // No hay tickets para mostrar
             // Puedes mostrar un mensaje o hacer algo aquí
@@ -59,7 +61,7 @@ public class Listado_tickets_Activity extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             // Creamos e instalamos el adaptador
-            ticketAdapter = new TicketAdapter(tickets, this);
+            ticketAdapter = new TicketAdapter(tickets, this, myApiService);
             recyclerView.setAdapter(ticketAdapter);
 
         }
