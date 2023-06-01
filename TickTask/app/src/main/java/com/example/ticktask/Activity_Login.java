@@ -50,8 +50,7 @@ public class Activity_Login extends AppCompatActivity {
                 try {
                     String email = String.valueOf(textinputEmail.getText());
                     String contrasenya = String.valueOf(textinputPassword.getText());
-                    //String email = "alfredo@gmail.com";
-                    //String contrasenya = "1234";
+
                     Usuario_login_email usuario_pedicion = new Usuario_login_email();
                     usuario_pedicion.setEmail(email);
                     usuario_pedicion.setContrasenya(contrasenya);
@@ -70,13 +69,14 @@ public class Activity_Login extends AppCompatActivity {
                                   startActivity(intent);
                               } else {
                                   Log.println(Log.ASSERT, "", "No Loqueado");
-                                  Toast.makeText(getApplicationContext(),"login incorrecto",Toast.LENGTH_LONG);
+                                  Toast.makeText(getApplicationContext(),"login incorrecto",Toast.LENGTH_LONG).show();
 
                               }
                             }
                         @Override
                         public void onFailure(Call<Respuesta_usuario_login> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),"No se pudo conectar al servidor",Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),"No se pudo conectar al servidor",Toast.LENGTH_LONG).show();
+
                         }
                     });
 

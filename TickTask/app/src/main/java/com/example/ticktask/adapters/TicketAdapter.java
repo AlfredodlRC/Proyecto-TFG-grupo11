@@ -28,34 +28,34 @@ import retrofit2.Response;
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketViewHolder> {
     private List<Ticket> tickets;  // Los datos de los tickets
     private Context context;
-     MyApiService myApiService;
+    MyApiService myApiService;
     private Ticket ticket;
     private long startTime;
 
-    public TicketAdapter(List<Ticket>tickets, Context context, MyApiService myApiService){
-        this.tickets= tickets;
+    public TicketAdapter(List<Ticket> tickets, Context context, MyApiService myApiService) {
+        this.tickets = tickets;
         this.context = context;
-        this.myApiService= myApiService;
+        this.myApiService = myApiService;
     }
 
     @NonNull
     @Override
-    public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int viewType){
+    public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_ticket, parent, false);
         return new TicketViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TicketViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
         Ticket ticket = tickets.get(position);
         holder.tvTitulo.setText(context.getString(R.string.nombre_ticket, ticket.getTitulo()));
         holder.tvPrioridad.setText(context.getString(R.string.tipo_solicitud, ticket.getPrioridad()));
-        holder.tvTipo.setText(context.getString(R.string.Prioridad,ticket.getTipoIncidencia()));
-        holder.tvFechaCreacion.setText(context.getString(R.string.date,ticket.getFechaCreacion()));
-     //   holder.tvPersonaCreadora.setText(context.getString(R.string.departamento,ticket.getPersonaCreadora()));
-        holder.tvDepartamento.setText(context.getString(R.string.departamento,ticket.getDepartamento()));
-        holder.tvPersonaAsignada.setText(context.getString(R.string.Usuario_Asignado,ticket.getPersonaAsignada()));
-        holder.tvDescripcion.setText(context.getString(R.string.descriptionText,ticket.getDescripcion()));
+        holder.tvTipo.setText(context.getString(R.string.Prioridad, ticket.getTipoIncidencia()));
+        holder.tvFechaCreacion.setText(context.getString(R.string.date, ticket.getFechaCreacion()));
+        //   holder.tvPersonaCreadora.setText(context.getString(R.string.departamento,ticket.getPersonaCreadora()));
+        holder.tvDepartamento.setText(context.getString(R.string.departamento, ticket.getDepartamento()));
+        holder.tvPersonaAsignada.setText(context.getString(R.string.Usuario_Asignado, ticket.getPersonaAsignada()));
+        holder.tvDescripcion.setText(context.getString(R.string.descriptionText, ticket.getDescripcion()));
     }
 
     @Override
@@ -89,9 +89,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
 
             //Encontramos el boton y lo ponemos a la escucha
             acceptButton = itemView.findViewById(R.id.acceptButton);
-            pendienteButton=itemView.findViewById(R.id.buttoPend);
-            resueltoButton=itemView.findViewById(R.id.buttonResult);
-            rechazadoButton=itemView.findViewById(R.id.buttonRech);
+            pendienteButton = itemView.findViewById(R.id.buttoPend);
+            resueltoButton = itemView.findViewById(R.id.buttonResult);
+            rechazadoButton = itemView.findViewById(R.id.buttonRech);
 
             acceptButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,10 +105,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
 
                     //ocultamos el button acceptar
                     acceptButton.setVisibility(View.GONE);
-                    if (!running){
+                    if (!running) {
+                        chronometer.setVisibility(View.VISIBLE);
                         chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
                         chronometer.start();
-                        running=true;
+                        running = true;
                     }
 
                 }
@@ -117,37 +118,27 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
             pendienteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (running){
+                    if (running) {
                         chronometer.stop();
                         pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
                         running = false;
                     }
-                    //Calculmaos la diferencia de tiempo
-                  /*  long elapseTime = System.currentTimeMillis() - startTime;
-                    //convetimos milisegundos a segundos
-                    int seconds = (int)(elapseTime/1000) % 60;
-                    //Convertimos milisgenudos a minutos
-                    int minutes = (int) ((elapseTime / (1000*60)) % 60);
-
-                    //Mostramos tiempo trascurrido
-                    Toast.makeText(context, "Tiempo Transcurrido : " + minutes + "minutos y " + seconds + "segundos", Toast.LENGTH_LONG).show();
-                      */
                     //marcamos a la api para  cambiar a el estado pendinete
                     Ticket currentTicket = tickets.get(getAdapterPosition());
                     //Marcas a la API para cambiar  a el estado pendiente
 
                     Incidencia incidencia = new Incidencia();
                     incidencia.setEstado("Pendiente");
-                    Call<Boolean> call = myApiService.put_actualizar_incidencia(currentTicket.getId(),incidencia);
+                    Call<Boolean> call = myApiService.put_actualizar_incidencia(currentTicket.getId(), incidencia);
                     call.enqueue(new Callback<Boolean>() {
                         @Override
                         public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                            if (response.isSuccessful()){
+                            if (response.isSuccessful()) {
                                 //El estado de la incidencia se actualizó con éxito
                                 pendienteButton.setVisibility(View.GONE);
                                 resueltoButton.setVisibility(View.GONE);
                                 rechazadoButton.setVisibility(View.GONE);
-                            }else {
+                            } else {
                                 //Error al actualizarse, mostramos un mensje
                             }
                         }
@@ -165,17 +156,71 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
                 @Override
                 public void onClick(View v) {
                     //marcamos a la api para  cambiar a el estado resuelto
+                    if (running) {
+                        chronometer.stop();
+                        pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+                        running = false;
+                    }
+                    //marcamos a la api para  cambiar a el estado resuelto
+                    Ticket currentTicket = tickets.get(getAdapterPosition());
+                    //Marcas a la API para cambiar  a el estado pendiente
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setEstado("Resuelto");
+                    Call<Boolean> call = myApiService.put_actualizar_incidencia(currentTicket.getId(), incidencia);
+                    call.enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            if (response.isSuccessful()) {
+
+                                //El estado de la incidencia se actualizó con éxito
+                                pendienteButton.setVisibility(View.GONE);
+                                resueltoButton.setVisibility(View.GONE);
+                                rechazadoButton.setVisibility(View.GONE);
+                                rechazadoButton.setVisibility(View.GONE);
+                            } else {
+                                //error al actualizarse
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Boolean> call, Throwable t) {
+                            //Error al actualizar el estado del la incidencia
+                        }
+                    });
                 }
             });
 
             rechazadoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // //marcamos a la api para  cambiar a el estado rezhazado
+
+                    if (running) {
+                        chronometer.stop();
+                        pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+                        running = false;
+                    }
+                    //marcazmos la api  para cambiar de esr¡tadi rechazado
+                    Ticket currentTicket = tickets.get(getAdapterPosition());
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setEstado("Rechazado");
+                    Call<Boolean> call = myApiService.put_actualizar_incidencia(currentTicket.getId(), incidencia);
+                    call.enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            if (response.isSuccessful()) {
+                                pendienteButton.setVisibility(View.GONE);
+                                resueltoButton.setVisibility(View.GONE);
+                                rechazadoButton.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Boolean> call, Throwable t) {
+                            Log.e("API_CALL", "Error during API call", t);
+                        }
+                    });
                 }
             });
         }
     }
-
-
 }

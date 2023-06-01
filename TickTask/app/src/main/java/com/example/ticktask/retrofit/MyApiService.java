@@ -1,6 +1,5 @@
 package com.example.ticktask.retrofit;
 
-import com.example.ticktask.Ticket;
 import com.example.ticktask.retrofit.POJOS.Departamento;
 import com.example.ticktask.retrofit.POJOS.Estado;
 import com.example.ticktask.retrofit.POJOS.Incidencia;
@@ -43,7 +42,7 @@ public interface MyApiService {
     @POST("/incidencia/cerrar/id/{id}")
     Call<Boolean> post_cerrar_incidencia(@Path("id") int id);
     @POST("/incidencia/rechazar/id/{id}")
-    Call<Boolean> post_rechazar_incidencia(@Path("id") int id);
+    Call<Boolean> post_rechazar_incidencia(@Path("id") int id, Incidencia incidencia);
     @GET("/incidencias/creador/id/{id}")
     Call<List<Incidencia>> get_incidencias_de_creador(@Path("id") int id);
     @GET("/incidencias/solucionador/id/{id}")
@@ -63,6 +62,8 @@ public interface MyApiService {
     @PUT("/incidencia/actualizar/{id}")
     Call<Boolean> put_actualizar_incidencia(@Path("id") int id, @Body Incidencia incidencia);
 
+    @PUT("/incidencia/{id}/asignar")
+    Call<Boolean> asignarIncidenciaAUsuario(@Path("id") int id, @Body Usuario_simple usuario);
 
 
 
