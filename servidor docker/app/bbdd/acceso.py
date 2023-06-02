@@ -72,6 +72,8 @@ class AccesoBBDD():
     #
     # Operaciones de usuarios
     #
+
+    # realizar login por nombre
     def login_nombre(self,usuario:str, contrasenya:str):
         resultado = {'login': False, 'nombre': '','id': '' }
         docs = self.__db__.collection(u'usuarios')
@@ -85,6 +87,7 @@ class AccesoBBDD():
                     resultado = {'login': True, 'nombre': doc.get('nombre'),'id': doc.id }
         return resultado
     
+    # realizar login por email
     def login_email(self,email:str, contrasenya:str):
         resultado = {"login": False, "nombre": '', 'id': ' '}
         print(email)
@@ -101,7 +104,7 @@ class AccesoBBDD():
 
     
     #
-    # De momento estás ds funciones no son necesarias.
+    # De momento estás funciones no son necesarias.
     #
     def solicitar_alta(self,usu_alta):
         resultado = False
@@ -115,6 +118,9 @@ class AccesoBBDD():
     # operaciones de incidencias
     #
 
+    # listado de incidencias referenciadas a un usuario
+    # se discrimina el listado si el usuario es quien ha creado el ticket 
+    # o si al crear el ticket se le ha asignado la ticket
     def listar_incidencias(self, id: int,tipo_usuario: str = None):
         try:
             resultado = list()
@@ -172,28 +178,34 @@ class AccesoBBDD():
             return False
      
 
+    # función para crear un ticket
+    # se transforma los datos enviados por la aplicación a los datos de la BBDD
     def crear_incidencia(self,incidencia: Incidencia_API):
         try:
-            docs = self.__db__.collection(u'incidencias')
+            # se transforma el departamento
             departamentos = self.obtener_departamentos()
             for departamento in departamentos:
                 if departamento.nombre == incidencia.departamento_destino:
                     fk_departamento_destino = departamento.pk
+            # se transforma el estado
             estados = self.obtener_estados()
             for estado in estados:
                 if estado.nombre == incidencia.estado:
                     fk_estado = estado.pk
+            # se transforma la prioridad
             prioridades = self.obtener_prioridades()
             for prioridad in prioridades:
                 print(prioridad.nombre,incidencia.prioridad)
                 if prioridad.nombre == incidencia.prioridad:
                     fk_prioridad = prioridad.pk
+            # se transforma el tipo de ticket
             tipos = self.obtener_tipo_incidencias()
             fk_tipo_incidencia = 0
             for tipo in tipos:
                 if tipo.nombre == incidencia.tipo_incidencia:
                     fk_tipo_incidencia = tipo.pk
 
+            # se transforma el creador y el destinatario del ticket
             personas = self.__db__.collection(u'usuarios').stream()
             resultado = list()
             for persona in personas:
@@ -201,6 +213,8 @@ class AccesoBBDD():
                     fk_persona_destino = persona.id
                 if persona.get('nombre') == incidencia.persona_origen:
                     fk_persona_origen = persona.id
+
+            # se  crea los datos a escribir en la BBDD
             datos = {
                 "descripcion": incidencia.descripcion,
                 "fk_persona_destino": fk_persona_destino,
@@ -218,13 +232,15 @@ class AccesoBBDD():
             print(datos)
             id = self.indice_maximo("incidencias") + 1
             print(id)
-    
+
+            # escribimos el ticket en la BBDD
+            docs = self.__db__.collection(u'incidencias')
             self.__db__.collection("incidencias").document(str(id)).set(datos)
             return True
         except:
             return False
 
-
+    # Función que cambia el estado del ticket a cerrado
     def cerrar_incidencia(self,id: int):
         try:
             print(str(id))
@@ -234,7 +250,7 @@ class AccesoBBDD():
         except:
             return False
 
-
+    # Función que cambia el estado del ticket a rechazado
     def rechazar_incidencia(self, id: int):
         try:
             print(str(id))
@@ -244,6 +260,7 @@ class AccesoBBDD():
         except:
             return False
 
+    # añadir un mensaje al ticket
     def anyadir_mensaje(self, texto: str, id: int = None, id_usuario: int = None):
         try:
             datos = {
@@ -259,7 +276,7 @@ class AccesoBBDD():
         except:
             return False
 
-
+    # eliminar el mensaje de un ticket
     def eliminar_mensaje(self, id: int):
         try:
             doc = self.__db__.collection(u'mensajes').document(str(id)).delete()
@@ -267,7 +284,7 @@ class AccesoBBDD():
         except:
             return False
 
-
+    # añadir un comentario a un ticket
     def anyadir_comentario_incidencia(self, texto: str, id: int = None, id_usuario: int = None):
         try:
             datos = {
@@ -284,6 +301,7 @@ class AccesoBBDD():
             return False
 
 
+    # eliminar comentario de la BBDD
     def eliminar_comentario(self, id: int):
         try:
             doc = self.__db__.collection(u'comentarios').document(str(id)).delete()
@@ -291,6 +309,7 @@ class AccesoBBDD():
         except:
             return False
 
+    # añadir un comentario a un mensaje
     def anyadir_comentario_mensaje(self, texto: str, id: int, id_usuario: int = None):
         try:
             datos = {
@@ -310,6 +329,7 @@ class AccesoBBDD():
 
     # Funciones auxiliares
 
+    # busca el mayor indice de una colección
     def indice_maximo(self,coleccion: str):
         id = 0
         docs = self.__db__.collection(coleccion).stream()

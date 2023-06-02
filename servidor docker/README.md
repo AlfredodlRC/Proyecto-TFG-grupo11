@@ -1,14 +1,8 @@
 # Proyecto servidor TickTask
 
 ## Ejecutar servidor
-Iniciar Servidor (en terminal estando en el directorio del servidor):
-cd venv
-cd Scripts
-activate
-cd ..
-cd ..
-cd app
-uvicorn main:app --reload
+Para ejecutar el servidor basta con ejecutar el script local-iniciar.bat
+Si se desea para el servidor se ejecutará el script local-parar.bat
 
 ## Ver y probar las entradas del servicio
 [Consultar puntos de entrada](http://127.0.0.1:8000/docs/)

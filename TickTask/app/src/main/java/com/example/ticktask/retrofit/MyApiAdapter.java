@@ -8,7 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyApiAdapter {
     private static MyApiService API_SERVICE;
 
-    private static final String BASE_URL = "http://192.168.0.191:9123/api/";
+    //private static final String BASE_URL = "http://192.168.0.191:9123/api/";
+    private static final String BASE_URL = "http://192.168.1.105:9123/api/";
 
     public static MyApiService getApiService() {
         // Creamos un interceptor y le indicamos el log level a usar
